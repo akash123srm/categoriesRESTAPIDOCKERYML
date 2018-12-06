@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  flaconiapiservice:
+    build:
+      context: ./flaconi-svc
+      args:
+        - environment=production
+    restart: always
+    container_name: flaconiApiService
+    volumes:
+      - "./flaconi-svc:/flaconi-svc"
+      - "/flaconi-svc/node_modules"
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    command: npm run dev
+
